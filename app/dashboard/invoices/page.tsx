@@ -6,12 +6,17 @@ import { lusitana } from "@/app/ui/fonts";
 import { InvoicesTableSkeleton } from "@/app/ui/skeletons";
 import { Suspense } from "react";
 
-export default async function Page(props: {
-  searchParams?: { query?: string; page?: string };
-}) {
-  const searchParams = await props.searchParams;
-  const query = searchParams?.query || "";
-  const currentPage = Number(searchParams?.page) || 1;
+interface PageProps {
+  searchParams?: {
+    query?: string;
+    page?: string;
+  };
+}
+
+export default async function Page({ searchParams }: PageProps) {
+  const theSearchParams = await searchParams;
+  const query = theSearchParams?.query || "";
+  const currentPage = Number(theSearchParams?.page) || 1;
   return (
     <div className="w-full">
       <div className="flex w-full items-center justify-between">
